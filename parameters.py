@@ -1,0 +1,25 @@
+BATCH_SIZE = 64 #8
+INPUT_DIM = 4
+EMBEDDING_DIM = 128
+SAMPLE_SIZE = 200
+K_SIZE = 20
+BUDGET_RANGE = (6, 8)
+SAMPLE_LENGTH = 0.02
+
+ADAPTIVE_AREA = False
+ADAPTIVE_TH = 0.4
+
+USE_GPU = False
+USE_GPU_GLOBAL = False
+CUDA_DEVICE = []
+NUM_META_AGENT = 2 #6
+LR = 1e-4
+GAMMA = 1
+DECAY_STEP = 32
+SUMMARY_WINDOW = 8
+FOLDER_NAME = 'smartmagdl'
+model_path = f'model/{FOLDER_NAME}'
+train_path = f'train/{FOLDER_NAME}'
+gifs_path = f'gifs/{FOLDER_NAME}'
+LOAD_MODEL = False
+SAVE_IMG_GAP = 1000

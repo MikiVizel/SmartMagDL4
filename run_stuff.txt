@@ -1,0 +1,33 @@
+python prepare_smartmag_scaling.py \
+  --data-dir "/home/mikiv/PycharmProjects/Magnetic_Image_Generation/Train" \
+  --label-dir "/home/mikiv/PycharmProjects/Magnetic_Image_Generation/Train" \
+  --count 1000 \
+  --output configs/my_smartmag_scaling.json
+python run.py train \
+  --config configs/calibrated.json \
+  --reconstructor smartmagdl \
+  --smartmag-checkpoint models/my_smartmagdl.pth \
+  --smartmag-scaling configs/my_smartmag_scaling.json \
+  --episodes 10000 \
+  --nodes 200 \
+  --budget-m 303.75 \
+  --spacing-m 0.6 \
+  --device cuda:1 \
+  --batch-size 256 \
+  --output runs/smartmag_planner_train
+
+
+python run.py evaluate \
+  --config configs/calibrated.json \
+  --checkpoint runs/smartmag_planner_train/checkpoint.pth \
+  --reconstructor smartmagdl \
+  --smartmag-checkpoint models/my_smartmagdl.pth \
+  --smartmag-scaling configs/my_smartmag_scaling.json \
+  --episodes 10 \
+  --seed 1000000 \
+  --nodes 200 \
+  --budget-m 303.75 \
+  --spacing-m 0.6 \
+  --device cuda:1 \
+  --plot-grid-size 300 \
+  --output runs/smartmag_planner_eval
